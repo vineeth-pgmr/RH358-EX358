@@ -1,1 +1,14 @@
 
+Session 1 - 12thJuly 2022SUMMARY-Apache HTTPD Webserver
+
+yum install httpd -y
+
+main configuration file /etc/httpd/conf/httpd.conf 
+main configration directory /etc/httpd/conf.d
+original process : /usr/sbin/httpd
+
+main objectivbes in httpd.conf
+
+Importance of Primary configuration file - 
+Any default setting changes ( Port number, DocumentRoot,Index.html )needed to done in a newfile with extension *.conf
+
