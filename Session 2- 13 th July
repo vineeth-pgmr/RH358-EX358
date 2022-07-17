@@ -1,1 +1,96 @@
 Session 2- 13 th July -Summary-Access Management
+
+ACCESS MANAGEMENT
+
+
+DocumentRoot /var/www/lw
+
+Stop all access to LW folder
+-----------------------------
+<Directory "/var/www/lw">
+Require all denied
+</Directory>
+
+Permit all access to LW folder
+------------------------------
+<Directory "var/www/lw">
+Require all granted
+</Directory>
+
+Restrict curl/7.64.1 version access form anyone
+--------------------------------
+<Directory "var/www/lw">
+<If "%{ HTTP_USER_AGENT } == curl/7.64.1'">
+    Require all denied
+</If>
+</Directory>
+
+Restrict all version curl  to access form anyone
+--------------------------------
+<Directory "var/www/lw">
+<If "%{ HTTP_USER_AGENT } =~ /curl.*/ ">
+    Require all denied
+</If>
+</Directory>
+
+Restrict access at 10th Hour
+-----------------------------
+<Directory "/var/www/lw">
+<If "%{TIME_HOUR} == 10">
+        Require all denied
+</If>
+</Directory>
+
+Restrict access at Between 10 to 17 Hrs
+---------------------------------------
+<Directory "/var/www/lw ">
+<If "%{TIME_HOUR} -gt 10 && %{TIME_HOUR} -lt 17">
+        Require all denied
+</If>
+</Directory>
+* -gt = Greater than or equal to
+* -lt = Less than or equal to
+
+Restrict a Specific IP address
+---------------------------------
+<Directory "/var/www/lw">
+<If "-R '192.168.1.65'">
+        Require all denied
+</If>
+</Directory>
+
+Restrict a Range of IP addresses
+---------------------------------
+<Directory "/var/www/lw">
+<If "-R '192.168.1'">
+        Require all denied
+</If>
+</Directory>
+
+Restrict ouside network of IP addresses
+---------------------------------
+<Directory "/var/www/lw">
+<If "-R '192.168.1'">
+Require all granted
+</If>
+Require all denied
+</Directory>
+
+Restrict a list of webpages 
+---------------------------
+<Directory "/var/www/lw">
+<If "%{REQUEST_URI} in { '/vimal.html','/jack.html','hello.html'">
+        Require all denied
+</If>
+</Directory>
+
+Restrict by special keyword  x=krish
+------------------------------------
+<Directory "/var/www/lw">
+<If "%{QUERY_STRING} == 'data=krish'">
+        Require all denied
+</If>
+</Directory>
+* http://192.168.1.100/lw.html?data=krish
+
+
