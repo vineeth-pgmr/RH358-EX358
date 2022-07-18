@@ -1,1 +1,49 @@
+Internal aspects of Webserver 
+Modular approach 
+Implementation of Security based on authentication 
+Basics on Virtual Hosting
 
+Secure webpage with custom username & password
+{
+DocumentRoot /var/www/lw/
+<directory "/var/www/lw/securedata">
+authname "myweb lw sec"
+authtype basic --> password uses plan text
+authbasicprovider file
+authuserfile "/etc/httpd/my.pass"
+#require valid-user
+require user vineeth --> sepecify a perticualr user to access it.
+</directory>
+
+htpasswd -c /ect/my.pass vineeth --> create a password for the user vineeth
+
+vim /var/www/lw/index.html > This is secure page 
+
+create a group of users to access it
+vim /etc/httpd/group.user
+webadmin: vineeth vimal jack
+
+
+systemctl restart httpd
+}
+
+VIRTUAL HOSTING
+---------------
+IP based virtual host
+
+<virtualhost 192.168.1.100>
+DocumentRoot /var/www/hr
+</virtualhost>
+
+<virtualhost 10.0.0.1>
+DocumentRoot /var/www/tech
+</virtualhost>         
+
+Port based virtual host
+<virtualhost 192.168.1.100:81>
+DocumentRoot /var/www/hr
+</virtualhost>
+
+<virtualhost 192.168.1.100:8080>
+DocumentRoot /var/www/tech
+</virtualhost>  
