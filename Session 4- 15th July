@@ -1,1 +1,49 @@
+Importance of Status Module 
+Log Management
+Customizing Log
+Virtual Hosting
+User Directory Management 
+Performance Monitoring
+
+userdirectory Management
+
+vim /etc/httpd/conf.d/userdir.conf
+  enable UserDir
+  enable public_html
+
+useradd vimal
+useradd hruser
+useradd techuser
+
+mkdir /home/vimal/public_html
+mkdir /home/hruser/public_html
+mkdir /home/techuser/public_html
+
+chgrp apache /home/vimal/public_html
+chgrp apache /home/hruser/public_html
+chgrp apache /home/hruser/public_html
+
+vim /home/vimal/public_html/index.html
+vim /home/hruser/public_html/index.html
+vim /home/techuser/public_html/index.html
+
+For secure website
+
+vim /home/vimal/pblic_html/.htaccess
+
+require all denied
+authname "myweb lw sec"
+authtype basic
+authbasicprovider file
+authuserfile "/etc/httpd/my.pass"
+authgroupfile "/etc/httpd/group.user"
+require valid-user
+
+We can disable a user by edit the file
+vim /etc/httpd/conf.d/userdir.conf
+user disabled vimal harry
+user diasbled --> for all users
+user enabled vimal --> we can enable a specific user
+
+
 
